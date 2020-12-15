@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": "./"
+    }
+  ],
+  "extensions": {
+    "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+  },
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib"
+  }
+}
