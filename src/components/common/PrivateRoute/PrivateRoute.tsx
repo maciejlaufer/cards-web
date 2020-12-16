@@ -1,3 +1,4 @@
+import { UserRoles } from 'models';
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { AuthUtils } from 'utils';
@@ -6,7 +7,7 @@ type PrivateRouteProps = {
   path: string;
   component: React.ElementType;
   exact?: boolean;
-  roles?: string[];
+  roles?: UserRoles[];
 };
 
 function PrivateRoute({
@@ -28,9 +29,9 @@ function PrivateRoute({
           );
         }
 
-        // if (roles && roles.indexOf(currentUser.role) === -1) {
-        //   return <Redirect to={{ pathname: '/' }} />;
-        // }
+        if (roles && AuthUtils.isAuthorized(roles)) {
+          return <Redirect to={{ pathname: '/' }} />;
+        }
 
         return <Component {...props} />;
       }}

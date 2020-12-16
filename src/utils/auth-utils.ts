@@ -1,3 +1,4 @@
+import { UserRoles } from 'models';
 import LocalStorageUtils from './local-storage-utils';
 
 function isAuthenticated(): boolean {
@@ -10,8 +11,21 @@ function isAuthenticated(): boolean {
   return false;
 }
 
+function isAuthorized(requiredRoles: UserRoles[]): boolean {
+  const token = LocalStorageUtils.getItem('auth-token');
+  // check if token payload has required role
+  return true;
+}
+
+function logout(): void {
+  LocalStorageUtils.removeItem('auth-token');
+  window.location.href = '/';
+}
+
 const AuthUtils = {
   isAuthenticated,
+  isAuthorized,
+  logout,
 };
 
 export default AuthUtils;
